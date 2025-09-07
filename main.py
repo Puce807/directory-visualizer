@@ -1,12 +1,12 @@
 from pathlib import Path
 
+from render import *
 from scan import *
 from utils import *
 from config import *
 
-#target_dir = ""
-target_dir = r"C:\Users\lrgc1\PycharmProject\directory-visualizer\test"
-success = True
+target_dir = ""
+success = False
 while not success:
     print("Please enter your target directory:")
     target_dir = Path(input(">  "))
@@ -17,7 +17,8 @@ while not success:
         print(f"ERROR: '{target_dir}' does not exist!")
 
 file_list = scan_files(target_dir)
-stem_list = get_stem(file_list)
-print(stem_list)
+file_stem_list = get_stem(file_list)
+dir_list = scan_dirs(target_dir)
 
-# Rendering Code:
+print(f"{Path(target_dir).stem}\\")
+print_contents(file_stem_list, dir_list, 0)
